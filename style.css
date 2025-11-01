@@ -1,0 +1,224 @@
+:root {
+    --primary-color: #1F4E79;       
+    --primary-hover: #163B5A;       
+    --accent-color: #F5A623;        
+    --background-color: #F9FAFB;   
+    --card-background: #FFFFFF;     
+    --text-color: #111827;          
+    --subtle-text: #6B7280;         
+    --border-color: #E5E7EB;        
+    --terminal-bg: #1E1E2F;         
+    --terminal-text: #A5F3FC;       
+    --success-color: #10B981;       
+    --error-color: #EF4444;         
+    --shadow: 0 8px 24px rgba(0,0,0,0.08);
+    --shadow-hover: 0 12px 36px rgba(0,0,0,0.12);
+    --timeline-color: #CBD5E1;      
+    --timeline-dot: #1F4E79;         
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 960px;
+    margin: 3em auto;
+    padding: 0 1.5em;
+}
+
+/* Header */
+header {
+    background-color: var(--card-background);
+    padding: 2em;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    color: var(--text-color);
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
+/* Navigation */
+nav {
+    margin-top: 2em;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+}
+
+nav a {
+    padding: 10px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background-color: var(--primary-hover);
+    color: #fff;
+}
+
+nav a.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* Cards and Blocks */
+.card, .block {
+    background-color: var(--card-background);
+    border-radius: 12px;
+    padding: 2em;
+    margin-bottom: 2.5em;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.card:hover, .block:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.card h2, .block-header {
+    margin-top: 0;
+    font-size: 1.6em;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* Certificate list */
+#certificateList {
+    list-style-type: none;
+    padding: 0;
+    max-height: 250px;
+    overflow-y: auto;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+#certificateList li {
+    padding: 12px;
+    margin: 4px 0;
+    border-radius: 8px;
+    font-family: 'Fira Mono', monospace;
+    font-size: 0.95em;
+    color: var(--subtle-text);
+    background: #F3F4F6;
+    transition: all 0.2s ease;
+}
+
+#certificateList li:hover {
+    background-color: #E5E7EB;
+}
+
+/* Terminal */
+.terminal {
+    height: 280px;
+    overflow-y: scroll;
+    padding: 1em;
+    background-color: var(--terminal-bg);
+    color: var(--terminal-text);
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+/* Timeline for blocks */
+.timeline {
+    position: relative;
+    margin: 2em 0;
+    padding-left: 30px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 14px;
+    width: 4px;
+    height: 100%;
+    background-color: var(--timeline-color);
+    border-radius: 2px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2em;
+    padding-left: 20px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -16px;
+    top: 0;
+    width: 12px;
+    height: 12px;
+    background-color: var(--timeline-dot);
+    border-radius: 50%;
+    border: 2px solid var(--card-background);
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+}
+
+.timeline-item .timestamp {
+    font-size: 0.8em;
+    color: var(--subtle-text);
+    margin-bottom: 0.5em;
+}
+
+/* Status messages */
+#status {
+    font-weight: 500;
+    padding: 1em;
+    background-color: #E0E7FF;
+    border-radius: 12px;
+    word-wrap: break-word;
+    margin-top: 1em;
+    border: 1px solid #93C5FD;
+}
+
+.error { color: var(--error-color); font-weight: 700; }
+.success { color: var(--success-color); font-weight: 700; }
+
+/* Buttons & Inputs */
+input, button {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 6px rgba(31,78,121,0.3);
+}
+
+button {
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
