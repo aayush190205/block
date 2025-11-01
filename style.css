@@ -222,3 +222,58 @@ button:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-hover);
 }
+/* --- New Block Explorer Card Styles --- */
+
+/* This makes the container scroll horizontally */
+#blocks-container {
+    display: flex;
+    overflow-x: auto; /* Allows horizontal scrolling */
+    padding: 1.5em 0.5em;
+    background-color: #e9ecef;
+    border-radius: 12px;
+}
+
+/* This styles each individual block card */
+.block {
+    flex: 0 0 320px; /* Each block is 320px wide, no growing, no shrinking */
+    margin-left: 1.5em;
+    background-color: #e6f7e6; /* Light green background */
+    border: 1px solid #b7e1b7;
+    box-shadow: var(--shadow);
+    padding: 1em;
+    border-radius: 12px;
+}
+
+/* This overrides the default card padding on the blocks page */
+#blocks-container.card {
+    padding: 0;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+/* Styles for the new form-like fields inside the block */
+.block-card-form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: var(--subtle-text);
+}
+
+.block-card-form input[type="text"],
+.block-card-form textarea {
+    width: 100%;
+    padding: 8px;
+    font-family: monospace;
+    font-size: 0.9em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fafafa;
+    color: #333;
+}
+
+.block-card-form textarea {
+    height: 100px;
+    resize: none;
+}
+
