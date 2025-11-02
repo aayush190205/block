@@ -224,10 +224,10 @@ button.approve-btn:hover { background-color: #218838; }
     word-break: break-all;
 }
 
-/* --- NEW BLOCK EXPLORER VISUALS --- */
+/* --- BLOCK EXPLORER VISUALS --- */
 #blocks-container {
     display: flex;
-    overflow-x: auto; /* Allows horizontal scrolling */
+    overflow-x: auto;
     padding: 2.5em;
     background: #f0f2f5;
     border-radius: 12px;
@@ -235,9 +235,20 @@ button.approve-btn:hover { background-color: #218838; }
     min-height: 500px;
 }
 
+#filter-container {
+    margin-bottom: 1.5em;
+    background-color: #e9ecef;
+    padding: 1em;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+#filter-container label { font-weight: 600; }
+
 .block-card {
-    flex: 0 0 340px; /* Each block is 340px wide */
-    margin-left: 50px; /* Space for the chain */
+    flex: 0 0 340px;
+    margin-left: 50px;
     position: relative;
     background-color: #e6f7e6; /* Light green background */
     border: 1px solid #b7e1b7;
@@ -249,12 +260,9 @@ button.approve-btn:hover { background-color: #218838; }
 .block-card:hover {
     transform: translateY(-5px);
 }
-
 .block-card:first-child {
-    margin-left: 0; /* No chain link on the first block */
+    margin-left: 0;
 }
-
-/* The Chain Link Effect */
 .block-card::before {
     content: '🔗';
     position: absolute;
@@ -264,8 +272,10 @@ button.approve-btn:hover { background-color: #218838; }
     font-size: 32px;
     opacity: 0.6;
 }
+.block-card:first-child::before {
+    display: none;
+}
 
-/* Styles for the new form-like fields */
 .block-card-form label {
     display: block;
     margin-top: 10px;
@@ -273,7 +283,6 @@ button.approve-btn:hover { background-color: #218838; }
     font-size: 0.9em;
     color: var(--subtle-text);
 }
-
 .block-card-form input[type="text"],
 .block-card-form textarea {
     width: 100%;
@@ -286,12 +295,10 @@ button.approve-btn:hover { background-color: #218838; }
     color: #333;
     word-break: break-all;
 }
-
 .block-card-form textarea {
     height: 120px;
     resize: none;
 }
-
 .block-card .block-field { margin-top: 12px; }
 .block-card .field-label { font-weight: 600; color: var(--text-color); }
 .block-card .field-value { color: var(--subtle-text); word-wrap: break-word; font-family: monospace; }
