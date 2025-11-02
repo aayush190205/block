@@ -26,7 +26,8 @@
 
         <div class="tab-nav">
             <button class="tab-button active" data-tab="lookup">Verify Certificate</button>
-            <button class="tab-button" data-tab="issue" id="issue-tab" style="display: none;">Issue Certificate</button>
+            <button class="tab-button" data-tab="register" id="register-tab" style="display: none;">Register Institution</button>
+            <button class="tab-button" data-tab="issue" id="issue-tab" style="display: none;">Issue Certificates</button>
             <button class="tab-button" data-tab="admin" id="admin-tab" style="display: none;">Admin Panel</button>
         </div>
 
@@ -43,14 +44,28 @@
             </div>
         </div>
 
+        <div id="register" class="tab-content">
+            <section class="card" id="registerPanel">
+                <h2>Request Institution Registration</h2>
+                <p>Submit your institution's details to the owner for approval.</p>
+                <form id="requestForm">
+                    <input type="text" id="requestName" placeholder="Institution's Name (e.g., 'MIT')" required>
+                    <input type="text" id="requestId" placeholder="Institution ID (e.g., 'MIT-001')" required>
+                    <button type="submit">Submit Request</button>
+                </form>
+            </section>
+        </div>
+
         <div id="issue" class="tab-content">
             <section class="card" id="issuePanel">
-                <h2>Issue Certificate (Authorized)</h2>
+                <h2>Issue Certificates (Batch)</h2>
+                <p>Add students to the batch and issue all certificates in one transaction.</p>
+                <div id="batch-list">
+                    </div>
+                <button type="button" id="addStudentBtn" class="secondary-btn">Add Student to Batch</button>
+                <hr>
                 <form id="issueForm">
-                    <input type="text" id="studentName" placeholder="Student Name" required>
-                    <input type="text" id="courseName" placeholder="Course Name" required>
-                    <input type="text" id="marks" placeholder="Marks or Grade (e.g., A+, 85%)" required>
-                    <button type="submit">Issue Certificate</button>
+                    <button type="submit">Issue Batch</button>
                 </form>
             </section>
         </div>
@@ -58,13 +73,10 @@
         <div id="admin" class="tab-content">
             <section class="card" id="adminPanel">
                 <h2>⭐ Admin Panel (Owner Only)</h2>
-                <form id="authForm">
-                    <h3>Register New Institution</h3>
-                    <input type="text" id="authAddress" placeholder="Institution's Wallet Address (0x...)" required>
-                    <input type="text" id="authName" placeholder="Institution's Name (e.g., 'MIT')" required>
-                    <input type="text" id="authId" placeholder="Institution ID (e.g., 'MIT-001')" required>
-                    <button type="submit">Register and Authorize</button>
-                </form>
+                <h3>Approve Institution Requests</h3>
+                <div id="pending-requests-list">
+                    <p>Loading pending requests...</p>
+                </div>
                 <hr>
                 <form id="revokeForm">
                     <h3>Revoke Certificate</h3>
