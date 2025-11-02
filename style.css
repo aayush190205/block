@@ -1,7 +1,9 @@
-
+/* --- Final Professional UI Styles --- */
 :root {
     --primary-color: #007bff;
     --primary-hover: #0056b3;
+    --secondary-color: #6c757d;
+    --secondary-hover: #5a6268;
     --background-color: #f4f7f6;
     --card-background: #ffffff;
     --text-color: #333;
@@ -38,14 +40,12 @@ header h1 {
     font-weight: 700;
     color: var(--text-color);
 }
-
 nav {
     display: flex;
     justify-content: center;
     gap: 10px;
     margin-top: 1em;
 }
-
 nav a {
     padding: 10px 20px;
     border-radius: 8px;
@@ -54,13 +54,8 @@ nav a {
     font-weight: 600;
     transition: all 0.2s ease-in-out;
 }
-nav a:hover { 
-    background-color: #eef5ff;
-}
-nav a.active {
-    background-color: var(--primary-color);
-    color: white;
-}
+nav a:hover { background-color: #eef5ff; }
+nav a.active { background-color: var(--primary-color); color: white; }
 
 .card {
     background-color: var(--card-background);
@@ -81,6 +76,11 @@ nav a.active {
     font-size: 1.2em;
     color: var(--text-color);
 }
+hr {
+    border: 0;
+    border-top: 1px solid var(--border-color);
+    margin: 1.5em 0;
+}
 
 /* Tab Navigation */
 .tab-nav {
@@ -99,23 +99,12 @@ nav a.active {
     border-bottom: 4px solid transparent;
     transition: all 0.2s ease;
 }
-.tab-button:hover {
-    color: var(--primary-color);
-}
-.tab-button.active {
-    color: var(--primary-color);
-    border-bottom-color: var(--primary-color);
-}
+.tab-button:hover { color: var(--primary-color); }
+.tab-button.active { color: var(--primary-color); border-bottom-color: var(--primary-color); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
 
-/* Tab Content */
-.tab-content {
-    display: none; /* Hidden by default */
-}
-.tab-content.active {
-    display: block; /* Shown when active */
-}
-
-/* Connection Status Bar */
+/* Connection Bar */
 #connection-bar {
     background-color: var(--card-background);
     padding: 1em 2em;
@@ -126,11 +115,7 @@ nav a.active {
     justify-content: space-between;
     align-items: center;
 }
-#connectButton {
-    width: auto;
-    padding: 10px 20px;
-    margin: 0;
-}
+#connectButton { width: auto; padding: 10px 20px; margin: 0; }
 #status { font-weight: 500; word-wrap: break-word; }
 #blockNumber { font-weight: 500; color: var(--subtle-text); }
 
@@ -157,6 +142,26 @@ button {
     font-weight: bold;
 }
 button:hover { background-color: var(--primary-hover); }
+button.secondary-btn {
+    background-color: var(--secondary-color);
+    color: white;
+}
+button.secondary-btn:hover { background-color: var(--secondary-hover); }
+button.approve-btn {
+    width: auto;
+    padding: 8px 12px;
+    font-size: 0.9em;
+    background-color: var(--success-color);
+}
+button.approve-btn:hover { background-color: #218838; }
+
+/* Batch Issue Form */
+.batch-student-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.batch-student-row input { margin-bottom: 0; }
 
 /* Lookup & List Results */
 .lookup-results, #allCertificatesList {
@@ -179,6 +184,17 @@ button:hover { background-color: var(--primary-hover); }
 .certificate-details p { margin: 0.5em 0; }
 .error { color: var(--error-color); font-weight: bold; }
 .success { color: var(--success-color); font-weight: bold; }
+
+/* Admin Panel */
+.pending-request {
+    padding: 1em;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 /* Real-Time Log */
 .terminal {
@@ -208,15 +224,8 @@ button:hover { background-color: var(--primary-hover); }
     gap: 15px;
 }
 #filter-container label { font-weight: 600; }
-.block { 
-    background-color: var(--card-background); 
-    border-radius: 12px;
-    margin-bottom: 1.5em; 
-    padding: 1.5em; 
-    box-shadow: var(--shadow); 
-}
-/* --- NEW BLOCK EXPLORER VISUALS (from image) --- */
 
+/* --- NEW BLOCK EXPLORER VISUALS --- */
 #blocks-container {
     display: flex;
     overflow-x: auto; /* Allows horizontal scrolling */
@@ -224,7 +233,7 @@ button:hover { background-color: var(--primary-hover); }
     background: #f0f2f5;
     border-radius: 12px;
     border: 1px solid var(--border-color);
-    min-height: 480px;
+    min-height: 500px;
 }
 
 .block-card {
@@ -284,18 +293,6 @@ button:hover { background-color: var(--primary-hover); }
     resize: none;
 }
 
-/* Overrides for fields outside the form */
-.block-card .block-field {
-    margin-top: 12px;
-}
-.block-card .field-label {
-    font-weight: 600; 
-    color: var(--text-color);
-}
-.block-card .field-value {
-    color: var(--subtle-text);
-    word-wrap: break-word;
-    font-family: monospace;
-}
-
-
+.block-card .block-field { margin-top: 12px; }
+.block-card .field-label { font-weight: 600; color: var(--text-color); }
+.block-card .field-value { color: var(--subtle-text); word-wrap: break-word; font-family: monospace; }
