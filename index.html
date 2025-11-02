@@ -1,136 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EduBlockChain - Certificate Verification dApp</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Verifier</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>EduBlockChain</h1>
-      <p class="subtitle">Decentralized Certificate Verification Platform</p>
-      <nav>
-        <a href="#" class="active">Dashboard</a>
-        <a href="#">Docs</a>
-        <a href="#">Support</a>
-      </nav>
-    </header>
+    <div class="container">
+        <header>
+            <h1>Certificate Verification dApp</h1>
+            <nav>
+                <a href="index.html" class="active">Main dApp</a>
+                <a href="blocks.html">Block Explorer</a>
+            </nav>
+        </header>
+        
+        <section id="connection-bar">
+            <div>
+                <p id="status">Not Connected</p>
+                <h3 id="blockNumber">Current Block: #--</h3>
+            </div>
+            <button id="connectButton">Connect to MetaMask</button>
+        </section>
 
-    <!-- Connection Info -->
-    <section id="connection-bar">
-      <div class="connection-status">
-        <p id="status">Status: <span class="success">Connected</span></p>
-        <p id="blockNumber">Current Block: <span>132443</span></p>
-      </div>
-      <button id="connectButton">Connect Wallet</button>
-    </section>
-
-    <!-- Navigation Tabs -->
-    <div class="tab-nav">
-      <button class="tab-button active" data-tab="lookup">Lookup</button>
-      <button class="tab-button" data-tab="list">List</button>
-      <button class="tab-button" data-tab="register">Register</button>
-      <button class="tab-button" data-tab="issue">Issue</button>
-      <button class="tab-button" data-tab="batch">Batch</button>
-      <button class="tab-button" data-tab="admin">Admin</button>
-    </div>
-
-    <!-- Lookup Tab -->
-    <div id="lookup" class="tab-content active">
-      <div class="card">
-        <h2>Lookup Certificate</h2>
-        <input type="text" id="lookupInput" placeholder="Enter Certificate ID" />
-        <button id="lookupButton">Verify Certificate</button>
-        <div class="lookup-results" id="lookupResults"></div>
-      </div>
-    </div>
-
-    <!-- List Certificates Tab -->
-    <div id="list" class="tab-content">
-      <div class="card">
-        <h2>All Certificates</h2>
-        <ul id="certificateList"></ul>
-      </div>
-    </div>
-
-    <!-- Register Student Tab -->
-    <div id="register" class="tab-content">
-      <div class="card">
-        <h2>Register Student</h2>
-        <input type="text" id="studentName" placeholder="Student Name" />
-        <input type="text" id="studentWallet" placeholder="Wallet Address" />
-        <button id="registerButton">Register</button>
-      </div>
-    </div>
-
-    <!-- Issue Certificate Tab -->
-    <div id="issue" class="tab-content">
-      <div class="card">
-        <h2>Issue Certificate</h2>
-        <input type="text" id="studentID" placeholder="Student ID" />
-        <input type="text" id="certificateName" placeholder="Certificate Name" />
-        <input type="text" id="grade" placeholder="Grade / Marks" />
-        <button id="issueButton">Issue Certificate</button>
-      </div>
-    </div>
-
-    <!-- Batch Issue Tab -->
-    <div id="batch" class="tab-content">
-      <div class="card">
-        <h2>Batch Issue</h2>
-        <div id="batchContainer">
-          <div class="batch-student-row">
-            <input type="text" placeholder="Student ID" />
-            <input type="text" placeholder="Certificate Name" />
-            <input type="text" placeholder="Grade" />
-          </div>
+        <div class="tab-nav">
+            <button class="tab-button active" data-tab="lookup">Verify Certificate</button>
+            <button class="tab-button" data-tab="list">List All Certificates</button>
+            <button class="tab-button" data-tab="register" id="register-tab" style="display: none;">Register Institution</button>
+            <button class="tab-button" data-tab="issue" id="issue-tab" style="display: none;">Issue Certificates</button>
+            <button class="tab-button" data-tab="admin" id="admin-tab" style="display: none;">Admin Panel</button>
         </div>
-        <button id="addRowButton">Add Another</button>
-        <button id="batchIssueButton">Issue Batch Certificates</button>
-      </div>
+
+        <div id="lookup" class="tab-content active">
+            <div class="card">
+                <h2>Employer / Student Lookup</h2>
+                <p>Verify a certificate using the student's name and course name.</p>
+                <form id="lookupForm">
+                    <input type="text" id="lookupStudentName" placeholder="Student's Full Name" required>
+                    <input type="text" id="lookupCourseName" placeholder="Course Name" required>
+                    <button type="submit">Find & Verify Certificate</button>
+                </form>
+                <div id="lookupResults" class="lookup-results"></div>
+            </div>
+        </div>
+        
+        <div id="list" class="tab-content">
+            <div class="card">
+                <h2>All Issued Certificate IDs</h2>
+                <button id="listButton">Show All Certificates</button>
+                <ul id="certificateList"></ul>
+            </div>
+        </div>
+
+        <div id="register" class="tab-content">
+            <section class="card" id="registerPanel">
+                <h2>Request Institution Registration</h2>
+                <p>Submit your institution's details to the owner for approval.</p>
+                <form id="requestForm">
+                    <input type="text" id="requestName" placeholder="Institution's Name (e.g., 'MIT')" required>
+                    <input type="text" id="requestId" placeholder="Institution ID (e.g., 'MIT-001')" required>
+                    <button type="submit">Submit Request</button>
+                </form>
+            </section>
+        </div>
+
+        <div id="issue" class="tab-content">
+            <section class="card" id="issuePanel">
+                <h2>Issue Certificates (Batch)</h2>
+                <p>Add students to the batch and issue all certificates in one transaction.</p>
+                <div id="batch-list">
+                    </div>
+                <button type="button" id="addStudentBtn" class="secondary-btn">Add Student to Batch</button>
+                <hr>
+                <form id="issueForm">
+                    <button type="submit">Issue Batch</button>
+                </form>
+            </section>
+        </div>
+
+        <div id="admin" class="tab-content">
+            <section class="card" id="adminPanel">
+                <h2>⭐ Admin Panel (Owner Only)</h2>
+                <h3>Approve Institution Requests</h3>
+                <div id="pending-requests-list">
+                    <p>Loading pending requests...</p>
+                </div>
+                <hr>
+                <form id="revokeForm">
+                    <h3>Revoke Certificate</h3>
+                    <input type="text" id="revokeCertId" placeholder="Enter Certificate ID to Revoke" required>
+                    <button type="submit" class="danger-btn">Revoke Certificate</button>
+                </form>
+                 <hr>
+                <form id="revokeAuthForm">
+                    <h3>Revoke Institution Authority</h3>
+                    <input type="text" id="revokeAuthAddress" placeholder="Enter Wallet Address to Revoke" required>
+                    <button type="submit" class="danger-btn">Revoke Authority</button>
+                </form>
+                 <hr>
+                <form id="transferOwnerForm">
+                    <h3>Transfer Contract Ownership</h3>
+                    <input type="text" id="newOwnerAddress" placeholder="Enter New Owner's Wallet Address" required>
+                    <button type="submit" class="danger-btn">Transfer Ownership</button>
+                </form>
+            </section>
+        </div>
+
+        <section class="card">
+            <h2>Real-Time Blockchain Activity</h2>
+            <div id="logContainer" class="terminal"></div>
+        </section>
     </div>
 
-    <!-- Admin Tab -->
-    <div id="admin" class="tab-content">
-      <div class="card">
-        <h2>Pending Requests</h2>
-        <div class="pending-request">
-          <span><strong>Student:</strong> 0x45...a23</span>
-          <button class="approve-btn">Approve</button>
-        </div>
-        <div class="pending-request">
-          <span><strong>Student:</strong> 0x76...b19</span>
-          <button class="approve-btn">Approve</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <h2>Blockchain Logs</h2>
-        <div class="terminal" id="logTerminal">
-          <p>[INFO] Smart contract deployed successfully.</p>
-          <p>[BLOCK] Transaction #132443 confirmed.</p>
-          <p>[EVENT] New student registered: Alice.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Tab Functionality -->
-  <script>
-    const tabs = document.querySelectorAll(".tab-button");
-    const contents = document.querySelectorAll(".tab-content");
-
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        tabs.forEach((t) => t.classList.remove("active"));
-        contents.forEach((c) => c.classList.remove("active"));
-        tab.classList.add("active");
-        document.getElementById(tab.dataset.tab).classList.add("active");
-      });
-    });
-  </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
-
