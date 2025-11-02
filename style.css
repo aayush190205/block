@@ -4,6 +4,8 @@
     --primary-hover: #0056b3;
     --secondary-color: #6c757d;
     --secondary-hover: #5a6268;
+    --danger-color: #dc3545;
+    --danger-hover: #c82333;
     --background-color: #f4f7f6;
     --card-background: #ffffff;
     --text-color: #333;
@@ -85,6 +87,7 @@ hr {
 /* Tab Navigation */
 .tab-nav {
     display: flex;
+    flex-wrap: wrap;
     border-bottom: 2px solid var(--border-color);
     margin-bottom: 2em;
 }
@@ -112,8 +115,10 @@ hr {
     box-shadow: var(--shadow);
     margin-bottom: 2em;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    gap: 1em;
 }
 #connectButton { width: auto; padding: 10px 20px; margin: 0; }
 #status { font-weight: 500; word-wrap: break-word; }
@@ -147,6 +152,12 @@ button.secondary-btn {
     color: white;
 }
 button.secondary-btn:hover { background-color: var(--secondary-hover); }
+button.danger-btn {
+    background-color: var(--danger-color);
+}
+button.danger-btn:hover {
+    background-color: var(--danger-hover);
+}
 button.approve-btn {
     width: auto;
     padding: 8px 12px;
@@ -212,18 +223,6 @@ button.approve-btn:hover { background-color: #218838; }
     white-space: pre-wrap;
     word-break: break-all;
 }
-
-/* Block Explorer Styles */
-#filter-container {
-    margin-bottom: 1.5em;
-    background-color: #e9ecef;
-    padding: 1em;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-#filter-container label { font-weight: 600; }
 
 /* --- NEW BLOCK EXPLORER VISUALS --- */
 #blocks-container {
