@@ -26,6 +26,7 @@
 
         <div class="tab-nav">
             <button class="tab-button active" data-tab="lookup">Verify Certificate</button>
+            <button class="tab-button" data-tab="list">List All Certificates</button>
             <button class="tab-button" data-tab="register" id="register-tab" style="display: none;">Register Institution</button>
             <button class="tab-button" data-tab="issue" id="issue-tab" style="display: none;">Issue Certificates</button>
             <button class="tab-button" data-tab="admin" id="admin-tab" style="display: none;">Admin Panel</button>
@@ -41,6 +42,14 @@
                     <button type="submit">Find & Verify Certificate</button>
                 </form>
                 <div id="lookupResults" class="lookup-results"></div>
+            </div>
+        </div>
+
+        <div id="list" class="tab-content">
+            <div class="card">
+                <h2>All Issued Certificate IDs</h2>
+                <button id="listButton">Show All Certificates</button>
+                <ul id="certificateList"></ul>
             </div>
         </div>
 
@@ -82,6 +91,18 @@
                     <h3>Revoke Certificate</h3>
                     <input type="text" id="revokeCertId" placeholder="Enter Certificate ID to Revoke" required>
                     <button type="submit">Revoke Certificate</button>
+                </form>
+                <hr>
+                <form id="revokeAuthForm">
+                    <h3>Revoke Institution Authority</h3>
+                    <input type="text" id="revokeAuthAddress" placeholder="Enter Wallet Address to Revoke" required>
+                    <button type="submit" class="danger-btn">Revoke Authority</button>
+                </form>
+                 <hr>
+                <form id="transferOwnerForm">
+                    <h3>Transfer Contract Ownership</h3>
+                    <input type="text" id="newOwnerAddress" placeholder="Enter New Owner's Wallet Address" required>
+                    <button type="submit" class="danger-btn">Transfer Ownership</button>
                 </form>
             </section>
         </div>
