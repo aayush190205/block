@@ -215,7 +215,87 @@ button:hover { background-color: var(--primary-hover); }
     padding: 1.5em; 
     box-shadow: var(--shadow); 
 }
-.block-header { font-weight: 600; font-size: 1.4em; color: var(--primary-color); }
-.block-field { margin-top: 12px; }
-.field-label { font-weight: 600; color: var(--text-color); }
-.field-value { color: var(--subtle-text); word-wrap: break-word; font-family: monospace; }
+/* --- NEW BLOCK EXPLORER VISUALS (from image) --- */
+
+#blocks-container {
+    display: flex;
+    overflow-x: auto; /* Allows horizontal scrolling */
+    padding: 2.5em;
+    background: #f0f2f5;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    min-height: 480px;
+}
+
+.block-card {
+    flex: 0 0 340px; /* Each block is 340px wide */
+    margin-left: 50px; /* Space for the chain */
+    position: relative;
+    background-color: #e6f7e6; /* Light green background */
+    border: 1px solid #b7e1b7;
+    box-shadow: var(--shadow);
+    padding: 1.5em;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+.block-card:hover {
+    transform: translateY(-5px);
+}
+
+.block-card:first-child {
+    margin-left: 0; /* No chain link on the first block */
+}
+
+/* The Chain Link Effect */
+.block-card::before {
+    content: '🔗';
+    position: absolute;
+    left: -38px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 32px;
+    opacity: 0.6;
+}
+
+/* Styles for the new form-like fields */
+.block-card-form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: var(--subtle-text);
+}
+
+.block-card-form input[type="text"],
+.block-card-form textarea {
+    width: 100%;
+    padding: 8px 10px;
+    font-family: monospace;
+    font-size: 0.9em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fafafa;
+    color: #333;
+    word-break: break-all;
+}
+
+.block-card-form textarea {
+    height: 120px;
+    resize: none;
+}
+
+/* Overrides for fields outside the form */
+.block-card .block-field {
+    margin-top: 12px;
+}
+.block-card .field-label {
+    font-weight: 600; 
+    color: var(--text-color);
+}
+.block-card .field-value {
+    color: var(--subtle-text);
+    word-wrap: break-word;
+    font-family: monospace;
+}
+
+
