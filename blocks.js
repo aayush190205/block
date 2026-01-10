@@ -1,7 +1,5 @@
-// --- FINAL, OPTIMIZED, AND FILTERABLE BLOCK EXPLORER SCRIPT ---
 
 window.addEventListener('load', async () => {
-    // --- Your Updated Contract Details ---
     const contractAddress = "0xb17c844DC143Fab2C79a10CA0e27b393A17Ba184";
     const contractABI = [ { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "anonymous": false, "inputs": [ { "indexed": true, "internalType": "bytes32", "name": "certificateId", "type": "bytes32" }, { "indexed": false, "internalType": "string", "name": "studentName", "type": "string" }, { "indexed": false, "internalType": "string", "name": "courseName", "type": "string" } ], "name": "CertificateIssued", "type": "event" }, { "anonymous": false, "inputs": [ { "indexed": true, "internalType": "bytes32", "name": "certificateId", "type": "bytes32" } ], "name": "CertificateRevoked", "type": "event" }, { "anonymous": false, "inputs": [ { "indexed": true, "internalType": "address", "name": "wallet", "type": "address" }, { "indexed": false, "internalType": "string", "name": "name", "type": "string" }, { "indexed": false, "internalType": "string", "name": "institutionId", "type": "string" } ], "name": "InstitutionRegistered", "type": "event" }, { "anonymous": false, "inputs": [ { "indexed": true, "internalType": "address", "name": "wallet", "type": "address" }, { "indexed": false, "internalType": "string", "name": "name", "type": "string" }, { "indexed": false, "internalType": "string", "name": "institutionId", "type": "string" } ], "name": "InstitutionRequestSubmitted", "type": "event" }, { "inputs": [ { "internalType": "address", "name": "_wallet", "type": "address" } ], "name": "approveInstitution", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "certificateIdList", "outputs": [ { "internalType": "bytes32", "name": "", "type": "bytes32" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "bytes32", "name": "", "type": "bytes32" } ], "name": "certificateLookup", "outputs": [ { "internalType": "bytes32", "name": "", "type": "bytes32" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "bytes32", "name": "", "type": "bytes32" } ], "name": "certificates", "outputs": [ { "internalType": "string", "name": "studentName", "type": "string" }, { "internalType": "string", "name": "courseName", "type": "string" }, { "internalType": "string", "name": "marks", "type": "string" }, { "internalType": "string", "name": "issuingInstitution", "type": "string" }, { "internalType": "uint256", "name": "issueDate", "type": "uint256" }, { "internalType": "bool", "name": "isRevoked", "type": "bool" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "_studentName", "type": "string" }, { "internalType": "string", "name": "_courseName", "type": "string" } ], "name": "findCertificate", "outputs": [ { "internalType": "bytes32", "name": "", "type": "bytes32" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getCertificateCount", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "bytes32", "name": "certificateId", "type": "bytes32" } ], "name": "getCertificateDetails", "outputs": [ { "internalType": "string", "name": "", "type": "string" }, { "internalType": "string", "name": "", "type": "string" }, { "internalType": "string", "name": "", "type": "string" }, { "internalType": "string", "name": "", "type": "string" }, { "internalType": "uint256", "name": "", "type": "uint256" }, { "internalType": "bool", "name": "", "type": "bool" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getPendingRequests", "outputs": [ { "internalType": "address[]", "name": "", "type": "address[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "", "type": "address" } ], "name": "institutions", "outputs": [ { "internalType": "string", "name": "name", "type": "string" }, { "internalType": "string", "name": "institutionId", "type": "string" }, { "internalType": "bool", "name": "isRegistered", "type": "bool" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "", "type": "address" } ], "name": "isAuthorized", "outputs": [ { "internalType": "bool", "name": "", "type": "bool" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "string[]", "name": "_studentNames", "type": "string[]" }, { "internalType": "string[]", "name": "_courseNames", "type": "string[]" }, { "internalType": "string[]", "name": "_marks", "type": "string[]" } ], "name": "issueCertificateBatch", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "owner", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "pendingRequestList", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "", "type": "address" } ], "name": "pendingRequests", "outputs": [ { "internalType": "string", "name": "name", "type": "string" }, { "internalType": "string", "name": "institutionId", "type": "string" }, { "internalType": "bool", "name": "exists", "type": "bool" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "_name", "type": "string" }, { "internalType": "string", "name": "_id", "type": "string" } ], "name": "requestRegistration", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "_user", "type": "address" } ], "name": "revokeAuthority", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "bytes32", "name": "certificateId", "type": "bytes32" } ], "name": "revokeCertificate", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "_newOwner", "type": "address" } ], "name": "transferOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" } ];
     const rpcUrl = "https://sepolia.infura.io/v3/5cb8eb30eaae446c81ab26a22e968dda";
@@ -14,10 +12,9 @@ window.addEventListener('load', async () => {
     let allBlocksCache = [];
     let myBlocksCache = [];
 
-    // --- Renders blocks in the green card style ---
     const renderBlock = (block) => {
         const blockDiv = document.createElement('div');
-        blockDiv.className = 'block-card'; // Use the new .block-card style
+        blockDiv.className = 'block-card'; 
         const myTxs = block.myTransactions || [];
 
         let txData = '';
@@ -87,13 +84,12 @@ window.addEventListener('load', async () => {
     const fetchData = async () => {
         blocksContainer.innerHTML = '<p>Fetching data, this will be fast...</p>';
         try {
-            // --- UPDATED: Fetches all event types ---
+           
             const issuedFilter = contract.filters.CertificateIssued();
             const revokedFilter = contract.filters.CertificateRevoked();
             const registeredFilter = contract.filters.InstitutionRegistered();
             const requestFilter = contract.filters.InstitutionRequestSubmitted();
 
-            // Fetch all events in parallel
             const [issuedEvents, revokedEvents, registeredEvents, requestEvents] = await Promise.all([
                 contract.queryFilter(issuedFilter, 0, 'latest'),
                 contract.queryFilter(revokedFilter, 0, 'latest'),
@@ -114,7 +110,6 @@ window.addEventListener('load', async () => {
                 });
             }
 
-            // --- FASTER "ALL BLOCKS" LOADING ---
             const latestBlockNumber = await provider.getBlockNumber();
             allBlocksCache = [];
             blocksContainer.innerHTML = ''; // Clear loading message
@@ -149,3 +144,4 @@ window.addEventListener('load', async () => {
 
     fetchData();
 });
+
